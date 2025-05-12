@@ -9,10 +9,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { userid: string; invoiceid: string; itemid: string } }
+  {
+    params,
+  }: { params: Promise<{ userid: string; invoiceid: string; itemid: string }> }
 ) {
   try {
-    const { userid, invoiceid, itemid } = params;
+    const { userid, invoiceid, itemid } = await params;
     const userFromToken = verifyToken(request);
 
     if (!userFromToken || userFromToken.id !== parseInt(userid)) {
