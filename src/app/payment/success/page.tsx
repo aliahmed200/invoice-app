@@ -1,11 +1,16 @@
 "use client";
 import Image from "next/image";
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-export default function Page() {
-  const searchParams = useSearchParams();
-  const invoiceId = searchParams.get("invoiceId");
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { invoiceId?: string };
+}) {
+  const invoiceId = searchParams.invoiceId;
+  // const searchParams = useSearchParams();
+  // const invoiceId = searchParams.get("invoiceId");
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +23,7 @@ export default function Page() {
     }
 
     const timeout = setTimeout(() => {
-      router.replace("https://www.google.com/"); // تقدر تغيرها للمسار اللي انت عايزه
+      router.replace("https://www.google.com/");
     }, 2000);
 
     return () => clearTimeout(timeout);
