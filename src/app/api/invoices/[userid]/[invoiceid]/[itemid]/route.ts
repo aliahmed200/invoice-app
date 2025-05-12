@@ -102,12 +102,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  {
-    params,
-  }: { params: Promise<{ userid: string; invoiceid: string; itemid: string }> }
-) {
+export async function DELETE(request: NextRequest, { params }: Params) {
   try {
     const { userid, invoiceid, itemid } = await params;
     const userFromToken = verifyToken(request);
