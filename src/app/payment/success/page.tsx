@@ -1,33 +1,22 @@
-"use client";
 import Image from "next/image";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
-  searchParams: { invoiceId?: string };
+  searchParams: Promise<{ invoiceId: string }>;
 }) {
-  const invoiceId = searchParams.invoiceId;
+  const { invoiceId } = await searchParams;
   // const searchParams = useSearchParams();
   // const invoiceId = searchParams.get("invoiceId");
-  const router = useRouter();
 
-  useEffect(() => {
-    if (invoiceId) {
-      fetch("/api/mark-complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ invoiceId }),
-      });
-    }
+  if (invoiceId) {
+    fetch("/api/mark-complete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ invoiceId }),
+    });
+  }
 
-    const timeout = setTimeout(() => {
-      router.replace("https://www.google.com/");
-    }, 2000);
-
-    return () => clearTimeout(timeout);
-  }, [router, invoiceId]);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8">
       <h1 className="text-4xl font-bold mb-4 text-slate-800">
