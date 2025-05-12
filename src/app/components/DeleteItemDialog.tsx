@@ -34,7 +34,7 @@ export default function DeleteItemsDialog({ id, invoiceId, itemid }: Props) {
       const res = await fetch(
         `${DOMAIN}/api/invoices/${id}/${invoiceId}/${itemid}`,
         {
-          method: "Delete",
+          method: "DELETE",
           headers: { "Content-Type": "application/json" },
         }
       );

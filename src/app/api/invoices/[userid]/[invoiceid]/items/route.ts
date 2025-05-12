@@ -11,6 +11,10 @@ type Params = {
   params: Promise<{ userid: string; invoiceid: string }>;
 };
 
+// type Params = {
+//   params: Promise<{ invoiceid: string; userid: string }>;
+// };
+
 export async function POST(request: NextRequest, { params }: Params) {
   try {
     const { userid, invoiceid } = await params;
