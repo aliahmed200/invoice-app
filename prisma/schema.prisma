@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @db.VarChar(100) // maxlength 100
+  password  String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  invoices  Invoice[]
+}
+
+model Invoice {
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  clientName   String
+  clientEmail  String
+  status       String    @default("pending") // "pending", "paid"
+  totalAmount  Float
+  stripeLink   String   // رابط الدفع من Stripe
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  items        Item[]
+}
+
+model Item {
+  id         Int      @id @default(autoincrement())
+  invoiceId  Int
+  invoice    Invoice  @relation(fields: [invoiceId], references: [id])
+  name       String
+  quantity   Int
+  unitPrice  Float
+  totalPrice Float
+}
