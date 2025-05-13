@@ -52,13 +52,13 @@ const Page = async ({ params }: Props) => {
   const invoice: invoiceswithItems = await getSingleInvoice(id, invoiceId);
 
   return (
-    <section className="w-[1010px] m-auto mt-16">
-      <div className="flex justify-between items-end mb-8">
+    <section className="w-[300px] md:w-[600px] lg:w-[1010px] m-auto mt-16">
+      <div className="flex justify-between items-center mb-8">
         <div className="flex justify-between items-center gap-1 text-2xl font-bold">
           <Link href={`/invoices/${id}/?pageNumber=1`}>
             <ArrowLeft />
           </Link>
-          Invoice #{id}
+          <p className="hidden md:block"> Invoice #{id}</p>
           <DeleteInvoiceDialog id={id} invoiceId={invoiceId} />
           <EditInvoiceDialog
             id={id}
@@ -90,7 +90,7 @@ const Page = async ({ params }: Props) => {
       <div className="w-fit">
         <CreateItemDialog id={id} invoiceId={invoiceId} />
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {invoice.items.map((item) => (
           <Card key={item.id}>
             <CardHeader>

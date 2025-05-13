@@ -11,7 +11,7 @@ const NavBar = async () => {
   const payload = verifyTokenForPage(token);
 
   return (
-    <div className="flex items-center justify-between my-4 max-w-[1010px] mx-auto ">
+    <div className="flex items-center justify-between my-4 max-w-[300px] md:max-w-[600px] lg:max-w-[1010px] mx-auto ">
       <Link href={`/?id=${payload?.id}`} className="text-2xl font-bold">
         EasyInvo
       </Link>

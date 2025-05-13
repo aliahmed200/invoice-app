@@ -44,7 +44,7 @@ const Page = async ({ params, searchParams }: Props) => {
   const totalPages = Math.ceil(totalCount / ARTICLE_PER_PAGE);
 
   return (
-    <div className="w-[1010px] m-auto mt-16">
+    <div className="w-[300px] md:w-[600px] lg:w-[1010px] m-auto mt-16">
       <div className="flex justify-between items-center mb-5">
         <h3 className="flex items-center gap-2 font-bold text-2xl">
           {" "}

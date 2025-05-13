@@ -16,8 +16,10 @@ const page = async () => {
     redirect(`/?id=${payload.id}`);
   }
   return (
-    <section className="flex justify-center gap-6 items-center py-20 w-[1010px] m-auto">
-      <Image src={authImage} alt="auth image" width={590} />
+    <section className="flex flex-col-reverse lg:flex-row justify-center gap-6 items-center py-20 w-[300px] md:w-[600px] lg:w-[1010px]  m-auto">
+      <div className="hidden md:block">
+        <Image src={authImage} alt="auth image" width={590} />
+      </div>
       <div className="max-w-md w-full space-y-6">
         <h3 className="font-bold text-3xl">Welcom To Invoice</h3>
         <p className="text-slate-400">

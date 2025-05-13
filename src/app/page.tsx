@@ -15,9 +15,8 @@ export default async function Home({
   const token = cookieStore.get("jwtToken")?.value || "";
   const payload = verifyTokenForPage(token);
   return (
-    <section className="w-[1010px] m-auto mt-16">
-      <div className="flex items-center justify-between">
-        <div></div>
+    <section className="w-[300px] md:w-[600px] lg:w-[1010px] m-auto mt-16">
+      <div className="mb-10 lg:mb-0 flex items-center justify-end">
         {payload && (
           <Link href={`/invoices/${id}?pageNumber=1`}>
             <Button className="cursor-pointer" variant="default">
@@ -26,11 +25,11 @@ export default async function Home({
           </Link>
         )}
       </div>
-      <div className="flex items-center">
-        <h1 className="flex-1 font-bold text-6xl ">
+      <div className="flex flex-col lg:flex-row items-center">
+        <h1 className="flex-1 font-bold text-2xl text-center lg:text-left md:text-4xl lg:text-6xl ">
           Streamline Your Invoices, Simplify Payments, and Enhance Your Workflow
         </h1>
-        <div className="flex-1">
+        <div className="flex-1 md:flex-1">
           <Image src={manImage} alt="man" width={500} height={500} />
         </div>
       </div>

@@ -22,7 +22,7 @@ const Page = async ({ params }: Props) => {
   }
 
   return (
-    <section className="w-[1010px] m-auto mt-16">
+    <section className="w-[300px] md:w-[600px] lg:w-[1010px] m-auto mt-16">
       <div className="flex mb-5 items-center gap-1 text-2xl font-bold">
         <Link href={`/invoices/${id}/?pageNumber=1`}>
           <ArrowLeft />

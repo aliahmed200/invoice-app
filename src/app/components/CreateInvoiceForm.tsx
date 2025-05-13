@@ -85,8 +85,8 @@ export function CreateInvoiceForm({ userId }: { userId: string }) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex w-full gap-8">
-          <div className="flex-1">
+        <div className="flex flex-col md:flex-row w-full gap-8">
+          <div className="md:flex-1">
             <FormField
               control={form.control}
               name="clientName"
@@ -101,7 +101,7 @@ export function CreateInvoiceForm({ userId }: { userId: string }) {
               )}
             />
           </div>
-          <div className="flex-1">
+          <div className="md:flex-1">
             <FormField
               control={form.control}
               name="clientEmail"
@@ -122,8 +122,8 @@ export function CreateInvoiceForm({ userId }: { userId: string }) {
           </div>
         </div>
         {fields.map((field, index) => (
-          <div key={field.id} className="flex gap-4">
-            <div className="flex-1">
+          <div key={field.id} className="flex flex-col md:flex-row gap-4">
+            <div className="md:flex-1">
               <FormField
                 control={form.control}
                 name={`items.${index}.name`}
@@ -138,7 +138,7 @@ export function CreateInvoiceForm({ userId }: { userId: string }) {
                 )}
               />
             </div>
-            <div className="flex-1">
+            <div className="md:flex-1">
               <FormField
                 control={form.control}
                 name={`items.${index}.quantity`}
@@ -158,8 +158,7 @@ export function CreateInvoiceForm({ userId }: { userId: string }) {
                 )}
               />
             </div>
-
-            <div className="flex-1">
+            <div className="md:flex-1">
               <FormField
                 control={form.control}
                 name={`items.${index}.unitPrice`}
