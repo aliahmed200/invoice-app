@@ -19,7 +19,7 @@ const NavBar = async () => {
         {payload?.id ? (
           <div className="flex gap-3 items-center">
             <LogOut />
-            Hello {payload.username}..!
+            <p className="hidden md:block"> Hello {payload.username}..!</p>
           </div>
         ) : (
           <div className="flex items-center gap-4">
