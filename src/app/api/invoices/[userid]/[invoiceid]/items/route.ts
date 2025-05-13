@@ -1,3 +1,4 @@
+import { DOMAIN } from "@/app/utils/constant";
 import prisma from "@/app/utils/db";
 import { verifyToken } from "@/app/utils/verifyToken";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,13 +12,10 @@ type Params = {
   params: Promise<{ userid: string; invoiceid: string }>;
 };
 
-// type Params = {
-//   params: Promise<{ invoiceid: string; userid: string }>;
-// };
-
 export async function POST(request: NextRequest, { params }: Params) {
   try {
     const { userid, invoiceid } = await params;
+
     const userFromToken = verifyToken(request);
 
     if (!userFromToken || userFromToken.id !== parseInt(userid)) {
@@ -38,7 +36,6 @@ export async function POST(request: NextRequest, { params }: Params) {
 
     const body = await request.json();
     const { name, quantity, unitPrice } = body;
-
     const newItem = await prisma.item.create({
       data: {
         name,
@@ -71,7 +68,7 @@ export async function POST(request: NextRequest, { params }: Params) {
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: `http://localhost:3000/payment/success?invoiceId=${invoice.id}`,
+      success_url: `${DOMAIN}/payment/success?invoiceId=${invoice.id}`,
       cancel_url: "https://invoice-seven-alpha.vercel.app/cancel",
       metadata: {
         invoiceId: invoice.id.toString(),

@@ -50,6 +50,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
           name,
           quantity,
           unitPrice,
+          totalPrice: quantity * unitPrice,
         },
       });
     }
@@ -59,6 +60,8 @@ export async function PUT(request: NextRequest, { params }: Params) {
         invoiceId: parseInt(invoiceid),
       },
     });
+
+    console.log(updatedItems);
 
     const totalAmount = updatedItems.reduce(
       (acc, item) => acc + item.quantity * item.unitPrice,

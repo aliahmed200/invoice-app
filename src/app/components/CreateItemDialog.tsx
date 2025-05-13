@@ -44,7 +44,7 @@ export default function CreateItemDialog({ id, invoiceId }: Props) {
     });
     try {
       const res = await fetch(
-        `${DOMAIN}/invoices/${id}/${invoiceId}/items`,
+        `${DOMAIN}/api/invoices/${id}/${invoiceId}/items`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
